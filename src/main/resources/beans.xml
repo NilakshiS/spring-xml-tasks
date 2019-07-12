@@ -4,13 +4,5 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="movie" class="com.stackroute.demo.Movie">
-        <property name="actor">
-            <bean class="com.stackroute.demo.Actor">
-                <property name="name" value="abc"/>
-                <property name="gender" value="male"/>
-                <property name="age" value="23"/>
-            </bean>
-        </property>
-    </bean>
+    <bean id="beanLifecycle" class="com.stackroute.demo.BeanLifecycleDemoBean" init-method="customInit" destroy-method="customDestroy"/>
 </beans>
