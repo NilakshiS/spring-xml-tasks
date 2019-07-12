@@ -9,18 +9,9 @@ public class Main
 
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
 
-        //getting the movie bean created autowire by name and printing actor details
-        Movie movie = applicationContext.getBean("movie",Movie.class);
-        System.out.println(movie.getActor());
-
-        //error when trying to do by type
-        //org.springframework.beans.factory.NoUniqueBeanDefinitionException:
-        // No qualifying bean of type 'com.stackroute.mav.Actor'
-        // available: expected single matching bean but found 3: actor,actor1,actor2
-
-        //getting the movie bean created autowire by constructor and printing actor details
-        movie = applicationContext.getBean("movie1",Movie.class);
-        System.out.println(movie.getActor());
+        //getting the movie bean created
+        Movie movie = applicationContext.getBean("movie1",Movie.class);
+        //all the aware methods are called
 
     }
 }

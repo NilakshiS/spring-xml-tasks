@@ -10,7 +10,7 @@
         <constructor-arg name="age" value="23"/>
     </bean>
 
-    <bean id="movie" class="com.stackroute.demo.Movie" autowire="byName"/>
+<!--    <bean id="movie" class="com.stackroute.demo.Movie" autowire="byName"/>-->
 
     <bean id="movie1" class="com.stackroute.demo.Movie" autowire="constructor"/>
 </beans>
