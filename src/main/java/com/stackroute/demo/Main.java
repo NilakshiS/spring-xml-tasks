@@ -1,42 +1,41 @@
 package com.stackroute.demo;
 
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.support.BeanDefinitionReader;
-import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.ClassPathResource;
 
 public class Main
 {
     public static void main(String[] args) {
 
-        //Using ApplicationContext
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
+
+        //getting the three beans created using constructors
+        Actor actor1 = applicationContext.getBean("actor1",Actor.class);
+        Actor actor2 = applicationContext.getBean("actor2",Actor.class);
+        Actor actor3 = applicationContext.getBean("actor3",Actor.class);
+
+        //printing the details
+        System.out.println(actor1);
+        System.out.println(actor2);
+        System.out.println(actor3);
+
+        //getting the movie bean created using constructors and printing actor details
         Movie movie = applicationContext.getBean("movie",Movie.class);
-        System.out.println(movie.getActor().getName());
-        System.out.println(movie.getActor().getGender());
-        System.out.println(movie.getActor().getAge());
+        System.out.println(movie.getActor());
 
-        //Using BeanFactory
-        BeanFactory factory = null;
-        factory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
-        movie = (Movie) factory.getBean("movie");
-        System.out.println(movie.getActor().getName());
-        System.out.println(movie.getActor().getGender());
-        System.out.println(movie.getActor().getAge());
+        //getting the same bean using default scope
+        Movie movie1 = applicationContext.getBean("movie",Movie.class);
+        System.out.println(movie==movie1);  //prints true
 
-        //using BeanDefinitionRegistry and BeanDefinitionReader
-        BeanDefinitionRegistry beanDefinitionRegistry = new DefaultListableBeanFactory();
-        BeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(beanDefinitionRegistry);
-        beanDefinitionReader.loadBeanDefinitions(new ClassPathResource("beans.xml"));
-        movie = (Movie) ((DefaultListableBeanFactory)beanDefinitionRegistry).getBean("movie");
-        System.out.println(movie.getActor().getName());
-        System.out.println(movie.getActor().getGender());
-        System.out.println(movie.getActor().getAge());
+        //getting the same bean using prototype scope
+        movie = applicationContext.getBean("movie1",Movie.class);
+        movie1 = applicationContext.getBean("movie1",Movie.class);
+        System.out.println(movie==movie1);      //prints false now
+
+        //getting the same bean using different name
+        movie = applicationContext.getBean("MovieA",Movie.class);
+        movie1 = applicationContext.getBean("MovieB",Movie.class);
+        System.out.println(movie==movie1);  //prints true
 
     }
 }
