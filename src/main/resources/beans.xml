@@ -4,31 +4,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="actor1" class="com.stackroute.demo.Actor">
+    <bean id="actor" name="ll" class="com.stackroute.demo.Actor">
         <constructor-arg name="name" value="abc"/>
         <constructor-arg name="gender" value="male"/>
         <constructor-arg name="age" value="23"/>
     </bean>
-    <bean id="actor2" class="com.stackroute.demo.Actor">
-        <constructor-arg index="0" value="abcd"/>
-        <constructor-arg index="1" value="male"/>
-        <constructor-arg index="2" value="24"/>
-    </bean>
-    <bean id="actor3" class="com.stackroute.demo.Actor">
-        <constructor-arg type="java.lang.String" value="abce"/>
-        <constructor-arg type="java.lang.String" value="male"/>
-        <constructor-arg type="int" value="25"/>
-    </bean>
 
-    <bean id="movie" class="com.stackroute.demo.Movie">
-        <constructor-arg ref="actor3"/>
-    </bean>
+    <bean id="movie" class="com.stackroute.demo.Movie" autowire="byName"/>
 
-    <bean id="movie1" class="com.stackroute.demo.Movie" scope="prototype">
-        <constructor-arg ref="actor3"/>
-    </bean>
-
-    <bean name="MovieA,MovieB" class="com.stackroute.demo.Movie">
-        <constructor-arg ref="actor3"/>
-    </bean>
+    <bean id="movie1" class="com.stackroute.demo.Movie" autowire="constructor"/>
 </beans>
