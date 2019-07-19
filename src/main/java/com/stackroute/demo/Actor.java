@@ -1,11 +1,14 @@
 package com.stackroute.demo;
 
 public class Actor {
-    String name;
-    String gender;
-    int age;
+    private String name;
+    private String gender;
+    private int age;
+
+    //default constructor
     Actor(){}
 
+    //setters
     public void setName(String name) {
         this.name = name;
     }
@@ -18,6 +21,7 @@ public class Actor {
         this.age = age;
     }
 
+    //getters
     public String getName() {
         return name;
     }
@@ -30,12 +34,14 @@ public class Actor {
         return age;
     }
 
+    //parameterised constructors
     public Actor(String name, String gender, int age) {
         this.name = name;
         this.gender = gender;
         this.age = age;
     }
 
+    //toString method
     @Override
     public String toString() {
         return "Actor{" +
