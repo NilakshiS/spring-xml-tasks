@@ -4,8 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!--Movie bean-->
     <bean id="movie" class="com.stackroute.demo.Movie">
         <property name="actor">
+            <!--Actor bean defined inside movie bean to inject dependency-->
             <bean class="com.stackroute.demo.Actor">
                 <property name="name" value="abc"/>
                 <property name="gender" value="male"/>
