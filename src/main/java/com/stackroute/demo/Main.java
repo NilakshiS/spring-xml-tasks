@@ -7,6 +7,7 @@ public class Main
 {
     public static void main(String[] args) {
 
+        //getting the application context
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
 
         //getting the movie bean created
